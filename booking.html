@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Αίτημα Προσφοράς & Κράτηση | VIP Mini Bus Transfers Crete</title>
+  <meta name="description" content="Ζητήστε άμεση προσφορά για VIP μεταφορά ή εκδρομή με Mini Bus στην Κρήτη. Χωρίς προπληρωμή, άμεση επιβεβαίωση μέσω email & WhatsApp.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter (display=optional eliminates font-swap jitter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=optional" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- Sticky Navbar (Zero Flicker) -->
+  <header class="site-header">
+    <div class="container">
+      <div class="nav-container">
+        <a href="index.html" class="brand-logo" aria-label="VIP Mini Bus Transfers Crete">
+          <div class="brand-logo-icon">V</div>
+          <div class="brand-logo-text">
+            <span class="brand-title">VIP MiniBus</span>
+            <span class="brand-subtitle">Crete Transfers</span>
+          </div>
+        </a>
+
+        <nav class="nav-menu" aria-label="Main Navigation">
+          <a href="index.html" class="nav-link" data-i18n="navHome">Αρχική</a>
+          <a href="fleet.html" class="nav-link" data-i18n="navFleet">Ο Στόλος μας</a>
+          <a href="tours.html" class="nav-link" data-i18n="navTours">Εκδρομές & Tours</a>
+          <a href="booking.html" class="nav-link active" data-i18n="navBooking">Κράτηση & Προσφορά</a>
+          <a href="contact.html" class="nav-link" data-i18n="navContact">Επικοινωνία</a>
+        </nav>
+
+        <div class="nav-actions">
+          <div class="lang-switcher" aria-label="Language selector">
+            <button type="button" class="lang-btn active" data-lang="el">EL</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <a href="booking.html" class="btn btn-primary btn-sm btn-quote-header" data-i18n="btnGetQuote">Ζητήστε Προσφορά</a>
+          
+          <button class="mobile-toggle" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="section section-dark" style="padding-top: 3.5rem; padding-bottom: 3.5rem;">
+    <div class="container text-center">
+      <span class="badge badge-gold" style="margin-bottom: 0.8rem;" data-i18n="badgeVipStandard">VIP Executive Standard Crete</span>
+      <h1 data-i18n="bookingPageTitle" style="margin-bottom: 1rem;">Αίτημα Προσφοράς & Κράτηση</h1>
+      <p class="section-description" style="max-width: 720px; margin: 0 auto;" data-i18n="bookingPageSubtitle">
+        Συμπληρώστε τα στοιχεία της διαδρομής σας και θα λάβετε άμεσα την επίσημη επιβεβαίωση και τελική τιμή για την Κρήτη.
+      </p>
+    </div>
+  </section>
+
+  <!-- Quick Estimator Widget (Synced with Crete Hubs & Km) -->
+  <section class="section section-light" style="padding-top: 2.5rem; padding-bottom: 1.5rem;">
+    <div class="container">
+      <div id="price-calculator" class="calculator-card reveal" style="margin-bottom: 2rem;">
+        <div class="calculator-header">
+          <span class="section-subtitle" data-i18n="calcTitle">Εκτιμητής Κόστους Διαδρομής</span>
+          <h2 class="calculator-title" data-i18n="calcSubtitle">Υπολογίστε άμεσα την κατά προσέγγιση τιμή για τη μεταφορά σας στην Κρήτη</h2>
+        </div>
+
+        <div class="calc-grid">
+          <div class="form-group">
+            <label for="calc-pickup" class="form-label" data-i18n="calcLabelPickup">Σημείο Παραλαβής (Κρήτη)</label>
+            <select id="calc-pickup" class="form-control"></select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-dropoff" class="form-label" data-i18n="calcLabelDropoff">Προορισμός (Κρήτη)</label>
+            <select id="calc-dropoff" class="form-control"></select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-trip-type" class="form-label" data-i18n="calcLabelTripType">Τύπος Διαδρομής</label>
+            <select id="calc-trip-type" class="form-control">
+              <option value="oneway" data-i18n="calcOptionOneWay">Απλή Μετάβαση</option>
+              <option value="roundtrip" data-i18n="calcOptionRoundTrip">Μετ' Επιστροφής (-10%)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calculator-result-box">
+          <div class="calc-price-wrap">
+            <span class="calc-price-label" data-i18n="calcEstimatedPrice">Ενδεικτικό Κόστος Διαδρομής:</span>
+            <div id="calc-price-output" class="calc-price-value">--€ – --€</div>
+            <p class="calc-price-disclaimer" data-i18n="calcDisclaimer">
+              Η τιμή αποτελεί ενδεικτική εκτίμηση. Η τελική προσφορά επιβεβαιώνεται άμεσα βάσει ακριβούς τοποθεσίας και διαθεσιμότητας οδηγού.
+            </p>
+          </div>
+          <div>
+            <button type="button" id="calc-btn-book" class="btn btn-primary btn-lg" data-i18n="btnRequestQuoteForTrip">
+              Συμπλήρωση στη Φόρμα ↓
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clean, Uniform Transfer Details Form Section -->
+  <section class="section section-white" style="padding-top: 1rem;">
+    <div class="container">
+      <div class="grid grid-2" style="grid-template-columns: 1.45fr 0.55fr; gap: 2.5rem; align-items: start;">
+        
+        <!-- Form Column -->
+        <div class="booking-form-box">
+          <h2 style="font-size: 1.6rem; margin-bottom: 1.5rem; color: #0B1120;" data-i18n="bookingFormTitle">Φόρμα Στοιχείων Μεταφοράς</h2>
+          
+          <div id="booking-form-status" class="form-status"></div>
+
+          <form id="booking-form">
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+            <input type="hidden" name="from_name" value="VIP MiniBus Transfers Crete Website">
+            <input type="hidden" name="_to" value="paulostzernias@gmail.com">
+
+            <!-- SECTION 1: Personal Details -->
+            <div style="margin-bottom: 2rem;">
+              <div class="form-section-title" data-i18n="formSectionPersonal">
+                1. Προσωπικά Στοιχεία Επικοινωνίας
+              </div>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="field-name" class="form-label" data-i18n="formName">Ονοματεπώνυμο *</label>
+                  <input type="text" id="field-name" name="name" class="form-control" placeholder="π.χ. Νικόλαος Παπαδάκης" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="field-email" class="form-label" data-i18n="formEmail">Email Επικοινωνίας *</label>
+                  <input type="email" id="field-email" name="email" class="form-control" placeholder="name@example.com" required>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 1rem; max-width: 50%;">
+                <label for="field-phone" class="form-label" data-i18n="formPhone">Κινητό Τηλέφωνο (ή WhatsApp) *</label>
+                <input type="tel" id="field-phone" name="phone" class="form-control" placeholder="+30 699 999 9999" required>
+              </div>
+            </div>
+
+            <!-- SECTION 2: Trip & Schedule -->
+            <div style="margin-bottom: 2rem;">
+              <div class="form-section-title" data-i18n="formSectionTrip">
+                2. Στοιχεία Διαδρομής & Χρόνος Παραλαβής
+              </div>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="field-pickup" class="form-label" data-i18n="formPickup">Σημείο Παραλαβής στην Κρήτη *</label>
+                  <select id="field-pickup" name="pickup" class="form-control" required>
+                    <option value="airport-her">Αεροδρόμιο Ηρακλείου (HER)</option>
+                    <option value="airport-chq">Αεροδρόμιο Χανίων (CHQ)</option>
+                    <option value="port-her">Λιμάνι Ηρακλείου</option>
+                    <option value="port-souda">Λιμάνι Σούδας (Χανιά)</option>
+                    <option value="heraklion">Ηράκλειο</option>
+                    <option value="chania">Χανιά</option>
+                    <option value="rethymno">Ρέθυμνο</option>
+                    <option value="agios-nikolaos">Άγιος Νικόλαος</option>
+                    <option value="elounda">Ελούντα</option>
+                    <option value="hersonissos">Χερσόνησος</option>
+                    <option value="malia">Μάλια / Σταλίδα</option>
+                    <option value="gouves">Γούβες / Ανισσαράς</option>
+                    <option value="agia-pelagia">Αγία Πελαγία</option>
+                    <option value="sissi">Σίσι</option>
+                    <option value="bali">Μπαλί</option>
+                    <option value="georgioupolis">Γεωργιούπολη</option>
+                    <option value="platanias">Πλατανιάς / Αγία Μαρίνα</option>
+                    <option value="kolymbari">Κολυμβάρι</option>
+                    <option value="kissamos">Καστέλι Κισσάμου</option>
+                    <option value="matala">Μάταλα / Φαιστός</option>
+                    <option value="ierapetra">Ιεράπετρα</option>
+                    <option value="sitia">Σητεία</option>
+                    <option value="custom">Άλλη Τοποθεσία στην Κρήτη</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="field-dropoff" class="form-label" data-i18n="formDropoff">Προορισμός στην Κρήτη *</label>
+                  <select id="field-dropoff" name="dropoff" class="form-control" required>
+                    <option value="airport-her">Αεροδρόμιο Ηρακλείου (HER)</option>
+                    <option value="airport-chq">Αεροδρόμιο Χανίων (CHQ)</option>
+                    <option value="port-her">Λιμάνι Ηρακλείου</option>
+                    <option value="port-souda">Λιμάνι Σούδας (Χανιά)</option>
+                    <option value="heraklion">Ηράκλειο</option>
+                    <option value="chania">Χανιά</option>
+                    <option value="rethymno">Ρέθυμνο</option>
+                    <option value="agios-nikolaos">Άγιος Νικόλαος</option>
+                    <option value="elounda" selected>Ελούντα</option>
+                    <option value="hersonissos">Χερσόνησος</option>
+                    <option value="malia">Μάλια / Σταλίδα</option>
+                    <option value="gouves">Γούβες / Ανισσαράς</option>
+                    <option value="agia-pelagia">Αγία Πελαγία</option>
+                    <option value="sissi">Σίσι</option>
+                    <option value="bali">Μπαλί</option>
+                    <option value="georgioupolis">Γεωργιούπολη</option>
+                    <option value="platanias">Πλατανιάς / Αγία Μαρίνα</option>
+                    <option value="kolymbari">Κολυμβάρι</option>
+                    <option value="kissamos">Καστέλι Κισσάμου</option>
+                    <option value="matala">Μάταλα / Φαιστός</option>
+                    <option value="ierapetra">Ιεράπετρα</option>
+                    <option value="sitia">Σητεία</option>
+                    <option value="custom">Άλλη Τοποθεσία στην Κρήτη</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 1rem; max-width: 50%;">
+                <label for="field-datetime" class="form-label" data-i18n="formDateTime">Ημερομηνία & Ώρα Παραλαβής *</label>
+                <input type="datetime-local" id="field-datetime" name="datetime" class="form-control" required>
+              </div>
+            </div>
+
+            <!-- SECTION 3: Passengers & Extras -->
+            <div style="margin-bottom: 2rem;">
+              <div class="form-section-title" data-i18n="formSectionPax">
+                3. Επιβάτες, Αποσκευές & Ειδικά Αιτήματα
+              </div>
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="field-passengers" class="form-label" data-i18n="formPassengers">Αριθμός Επιβατών</label>
+                  <input type="number" id="field-passengers" name="passengers" class="form-control" min="1" max="20" value="1">
+                </div>
+
+                <div class="form-group">
+                  <label for="field-luggage" class="form-label" data-i18n="formLuggage">Αριθμός Μεγάλων Αποσκευών</label>
+                  <input type="number" id="field-luggage" name="luggage" class="form-control" min="0" max="25" value="2">
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 1.25rem;">
+                <label class="form-checkbox-label">
+                  <input type="checkbox" id="field-child-seat" name="child_seat" class="form-checkbox">
+                  <span data-i18n="formChildSeats">Χρειάζομαι Παιδικό Κάθισμα / Booster (Δωρεάν)</span>
+                </label>
+              </div>
+
+              <div class="form-group" style="margin-top: 1.25rem;">
+                <label for="field-notes" class="form-label" data-i18n="formNotes">Αριθμός Πτήσης / Σημειώσεις</label>
+                <textarea id="field-notes" name="notes" class="form-control" rows="3" placeholder="π.χ. Πτήση GQ210 Αθήνα-Ηράκλειο, πινακίδα ονόματος κ.α."></textarea>
+              </div>
+            </div>
+
+            <!-- GDPR Consent -->
+            <div class="form-group" style="margin-bottom: 2rem;">
+              <label class="form-checkbox-label" style="font-size: 0.85rem; color: #475569;">
+                <input type="checkbox" required class="form-checkbox">
+                <span data-i18n="formConsent">Συναινώ στην επεξεργασία των στοιχείων μου για την παροχή προσφοράς σύμφωνα με την Πολιτική Απορρήτου.</span>
+              </label>
+            </div>
+
+            <!-- Actions Row -->
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <button type="submit" class="btn btn-primary btn-lg" style="flex: 1;" data-i18n="btnSubmitQuoteForm">
+                Αποστολή Αιτήματος Προσφοράς
+              </button>
+              
+              <button type="button" id="btn-form-whatsapp" class="btn btn-whatsapp btn-lg" style="flex: 1;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/>
+                </svg>
+                <span data-i18n="btnWhatsAppDirect">Συνομιλία & Στείλτε στο WhatsApp</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sidebar Info -->
+        <div class="reveal delay-100">
+          <div class="card" style="padding: 2rem; background: #F8FAFC; border-radius: var(--radius-md); margin-bottom: 2rem; border: 1px solid #E2E8F0;">
+            <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0B1120;">Διαδικασία Κράτησης Κρήτης</h3>
+            <ul style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.95rem; color: #0F172A;">
+              <li style="display: flex; gap: 0.75rem;">
+                <span style="font-weight: 800; color: var(--color-accent-dark); font-size: 1.1rem;">1.</span>
+                <span><strong>Συμπλήρωση Αιτήματος:</strong> Στέλνετε τα στοιχεία σας μέσω της φόρμας ή με ένα κλικ στο WhatsApp.</span>
+              </li>
+              <li style="display: flex; gap: 0.75rem;">
+                <span style="font-weight: 800; color: var(--color-accent-dark); font-size: 1.1rem;">2.</span>
+                <span><strong>Έλεγχος Διαθεσιμότητας:</strong> Επιβεβαιώνουμε άμεσα τη διαθεσιμότητα του VIP Mini Bus και του οδηγού.</span>
+              </li>
+              <li style="display: flex; gap: 0.75rem;">
+                <span style="font-weight: 800; color: var(--color-accent-dark); font-size: 1.1rem;">3.</span>
+                <span><strong>Επιβεβαίωση Χωρίς Προκαταβολή:</strong> Λαμβάνετε την τελική επιβεβαίωση. Πληρωμή απευθείας στον οδηγό με κάρτα/μετρητά.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card" style="padding: 1.8rem; background: #FFFFFF; border-radius: var(--radius-md); border-left: 4px solid var(--color-accent); border: 1px solid #E2E8F0;">
+            <h4 style="font-size: 1.1rem; margin-bottom: 0.6rem; color: #0B1120;">Εγγύηση Ακύρωσης</h4>
+            <p style="font-size: 0.9rem; color: #334155; line-height: 1.6;">
+              Δωρεάν ακύρωση χωρίς καμία χρέωση έως και <strong>24 ώρες</strong> πριν από την προγραμματισμένη ώρα παραλαβής σας στην Κρήτη.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Shared Footer (9999999 & Crete) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 1rem;">
+            <div class="brand-logo-icon">V</div>
+            <div class="brand-logo-text">
+              <span class="brand-title">VIP MiniBus</span>
+              <span class="brand-subtitle">Crete Transfers</span>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem;" data-i18n="footerAbout">
+            Κορυφαίες υπηρεσίες ιδιωτικών μεταφορών και περιηγήσεων με πολυτελές Mini Bus σε όλη την Κρήτη.
+          </p>
+          <span class="badge badge-gold" data-i18n="badgeLicensed">Νόμιμη Άδεια ΕΟΤ / ΜΗΤΕ</span>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title" data-i18n="footerQuickLinks">Γρήγοροι Σύνδεσμοι</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link" data-i18n="navHome">Αρχική</a>
+            <a href="fleet.html" class="footer-link" data-i18n="navFleet">Ο Στόλος μας</a>
+            <a href="tours.html" class="footer-link" data-i18n="navTours">Εκδρομές & Tours</a>
+            <a href="booking.html" class="footer-link" data-i18n="navBooking">Κράτηση & Προσφορά</a>
+            <a href="contact.html" class="footer-link" data-i18n="navContact">Επικοινωνία</a>
+            <a href="privacy.html" class="footer-link" data-i18n="navPrivacy">Όροι & Απόρρητο</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title" data-i18n="footerServices">Υπηρεσίες Κρήτης</h4>
+          <div class="footer-links">
+            <span class="footer-link">Transfers Αεροδρομίου Ηρακλείου (HER)</span>
+            <span class="footer-link">Transfers Αεροδρομίου Χανίων (CHQ)</span>
+            <span class="footer-link">Ιδιωτική Εκδρομή Κνωσός</span>
+            <span class="footer-link">Εκδρομή Ελούντα & Σπιναλόγκα</span>
+            <span class="footer-link">VIP Μεταφορές Γάμων & Events</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title" data-i18n="footerContactTitle">Στοιχεία Επικοινωνίας</h4>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <a href="#" class="dyn-phone-link dyn-phone" style="font-weight: 700; color: #FFFFFF;">+30 699 999 9999</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <a href="mailto:paulostzernias@gmail.com" class="dyn-email-link dyn-email">paulostzernias@gmail.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span class="dyn-legal-address">Ηράκλειο, 712 02, Κρήτη</span>
+          </div>
+          
+          <div style="margin-top: 1rem; padding-top: 0.8rem; border-top: 1px solid var(--color-border-dark); font-size: 0.775rem;">
+            <div>Α.Φ.Μ.: <strong class="dyn-legal-vat">999999999</strong> (<span class="dyn-legal-doy">Δ.Ο.Υ. Ηρακλείου</span>)</div>
+            <div>Αρ. ΜΗ.Τ.Ε. (ΕΟΤ): <strong class="dyn-legal-mhte">9999E99999999999</strong></div>
+            <div>Αρ. Γ.Ε.ΜΗ.: <strong class="dyn-legal-gemi">999999999999</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 <span class="dyn-legal-company">VIP CRETE TRANSFERS & TOURS</span>. <span data-i18n="footerRights">Με επιφύλαξη παντός δικαιώματος.</span>
+        </div>
+        <div class="footer-legal-inline">
+          <a href="privacy.html" class="footer-link" data-i18n="navPrivacy">Όροι Χρήσης & Πολιτική Απορρήτου</a>
+          <span>•</span>
+          <span>Cloudflare Pages Fast & Secure</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="#" class="floating-whatsapp dyn-whatsapp-link" aria-label="Chat on WhatsApp" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/>
+    </svg>
+  </a>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/data/fleet.js"></script>
+  <script src="js/data/routes.js"></script>
+  <script src="js/data/i18n.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

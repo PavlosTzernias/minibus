@@ -1,0 +1,71 @@
+/* ==========================================================================
+   VIP MINI BUS TRANSFERS & TOURS - DESIGN TOKENS (variables.css)
+   ========================================================================== */
+
+:root {
+  /* Brand Palette - Modern Executive / Mediterranean Luxury */
+  --color-primary: #0B1120;        /* Deep Executive Navy */
+  --color-primary-light: #1E293B;  /* Slate Navy */
+  --color-primary-dark: #050811;   /* Ultra Dark Navy */
+  --color-surface-dark: #111827;   /* Section Dark Background */
+  
+  --color-accent: #D4AF37;         /* Warm Champagne Gold */
+  --color-accent-hover: #E5C158;   /* Light Gold Hover */
+  --color-accent-dark: #B38E22;    /* Deep Gold Active */
+  --color-accent-subtle: rgba(212, 175, 55, 0.12); /* Subtle Gold Tint */
+  --color-accent-glow: rgba(212, 175, 55, 0.25);
+  
+  --color-whatsapp: #25D366;       /* Official WhatsApp Green */
+  --color-whatsapp-hover: #20BD5A;
+  
+  /* Neutral Surfaces & Text */
+  --color-bg-light: #F8FAFC;       /* Off-white page background */
+  --color-bg-card: #FFFFFF;        /* Pure White Cards */
+  --color-border: #E2E8F0;         /* Subtle Borders */
+  --color-border-dark: #334155;    /* Dark Section Borders */
+  
+  --color-text-main: #1E293B;      /* Slate Charcoal for body */
+  --color-text-muted: #64748B;     /* Muted Grey */
+  --color-text-light: #F8FAFC;     /* Light Text on dark backgrounds */
+  --color-text-light-muted: #94A3B8;
+  
+  /* Typography - Seamless system fallbacks prevent any FOUT font-swap jitter */
+  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;  /* 4px */
+  --space-sm: 0.5rem;   /* 8px */
+  --space-md: 1rem;     /* 16px */
+  --space-lg: 1.5rem;   /* 24px */
+  --space-xl: 2rem;     /* 32px */
+  --space-2xl: 3rem;    /* 48px */
+  --space-3xl: 4.5rem;  /* 72px */
+  
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(11, 17, 32, 0.08);
+  --shadow-lg: 0 12px 32px rgba(11, 17, 32, 0.12);
+  --shadow-gold: 0 4px 20px rgba(212, 175, 55, 0.25);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  
+  /* Glassmorphism */
+  --glass-bg-dark: rgba(11, 17, 32, 0.85);
+  --glass-border-dark: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(12px);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Layout Containers */
+  --container-max: 1240px;
+  --container-narrow: 960px;
+}

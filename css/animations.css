@@ -1,0 +1,43 @@
+/* ==========================================================================
+   VIP MINI BUS TRANSFERS & TOURS - ANIMATIONS & TRANSITIONS (animations.css)
+   ========================================================================== */
+
+/* Rock-solid instant rendering (Zero Layout Shifts & Zero Flicker) */
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.reveal.active {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.delay-100,
+.delay-200,
+.delay-300,
+.delay-400 {
+  transition-delay: 0s !important;
+}
+
+/* Stable floating WhatsApp styling (High contrast, zero repaint loop) */
+.floating-whatsapp {
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+}
+
+/* Static badge gold style (No infinite GPU compositor loop) */
+.badge-gold-pulse {
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+}
+
+/* Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -17,6 +17,10 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+.site-header.menu-open {
+  z-index: 10000;
+}
+
 /* Stable minimum heights prevent container collapse on navigation */
 #fleet-detail-container { min-height: 400px; }
 #all-tours-container { min-height: 480px; }
@@ -184,7 +188,7 @@
   background-color: var(--color-accent);
 }
 
-/* Mobile Backdrop Overlay */
+/* Mobile Backdrop Overlay (Positioned behind header & menu, dims page background) */
 .nav-overlay {
   position: fixed;
   top: 0;
@@ -192,10 +196,10 @@
   width: 100vw;
   height: 100vh;
   height: 100dvh;
-  background: rgba(11, 17, 32, 0.72);
+  background: rgba(11, 17, 32, 0.65);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  z-index: 10000;
+  z-index: 995; /* Behind header & drawer, above page content */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.25s ease, visibility 0.25s ease;
@@ -208,9 +212,26 @@
   pointer-events: auto;
 }
 
+/* Desktop: Hide Mobile Menu Extras */
+.mobile-menu-extras {
+  display: none !important;
+}
+
 @media (max-width: 992px) {
+  .site-header {
+    z-index: 1000;
+  }
+  
+  .site-header.menu-open {
+    z-index: 10000;
+  }
+
   .mobile-toggle {
     display: flex;
+    width: 44px;
+    height: 44px;
+    padding: 11px 6px;
+    z-index: 10002;
   }
   
   .nav-menu {
@@ -257,6 +278,27 @@
   
   .nav-actions .btn-quote-header {
     display: none;
+  }
+
+  .mobile-menu-extras {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .mobile-menu-extras .lang-switcher {
+    align-self: flex-start;
+  }
+
+  .mobile-menu-extras .btn-quote-mobile {
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
   }
 }
 
@@ -1376,7 +1418,7 @@ textarea.form-control {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  z-index: 999;
+  z-index: 990;
   width: 60px;
   height: 60px;
   border-radius: var(--radius-full);

@@ -98,6 +98,7 @@
   function initMobileMenu() {
     const toggle = document.querySelector(".mobile-toggle");
     const navMenu = document.querySelector(".nav-menu");
+    const header = document.querySelector(".site-header");
     if (!toggle || !navMenu) return;
 
     // Overlay backdrop
@@ -112,6 +113,7 @@
       toggle.classList.add("active");
       navMenu.classList.add("open");
       overlay.classList.add("active");
+      if (header) header.classList.add("menu-open");
       document.body.style.overflow = "hidden";
     };
 
@@ -119,6 +121,7 @@
       toggle.classList.remove("active");
       navMenu.classList.remove("open");
       overlay.classList.remove("active");
+      if (header) header.classList.remove("menu-open");
       document.body.style.overflow = "";
     };
 
@@ -132,15 +135,18 @@
       }
     });
 
-    overlay.addEventListener("click", () => {
+    overlay.addEventListener("click", (e) => {
+      e.stopPropagation();
       closeMenu();
     });
 
     // Close when clicking nav links & prevent jitter/reload on current page link
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
-    navMenu.querySelectorAll(".nav-link").forEach(link => {
+    navMenu.querySelectorAll(".nav-link, .btn-quote-mobile").forEach(link => {
       link.addEventListener("click", (e) => {
         const linkHref = link.getAttribute("href");
+        if (!linkHref || linkHref.startsWith("#")) return;
+        
         const isCurrent = linkHref === currentPath || 
           ((currentPath === "index.html" || currentPath === "" || currentPath === "/") && 
            (linkHref === "index.html" || linkHref === "./" || linkHref === "/"));

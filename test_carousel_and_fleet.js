@@ -30,11 +30,12 @@ function runTests() {
   check(!toursHtml.includes('carousel-hint'), 'tours.html does not contain .carousel-hint');
   check(!i18nJs.includes('toursSwipeHint'), 'i18n.js does not contain toursSwipeHint');
 
-  // Requirement 2: Arrows placed left & right in the middle
+  // Requirement 2: Arrows placed left & right outside the text
   check(componentsCss.includes('.carousel-arrow {'), 'components.css defines .carousel-arrow');
-  check(componentsCss.includes('top: 50%') && componentsCss.includes('transform: translateY(-50%)'), 'components.css positions arrows at vertical center (top: 50%; transform: translateY(-50%))');
-  check(componentsCss.includes('.carousel-arrow.prev {') && componentsCss.includes('left: -22px;'), 'components.css positions prev arrow on the left (-22px)');
-  check(componentsCss.includes('.carousel-arrow.next {') && componentsCss.includes('right: -22px;'), 'components.css positions next arrow on the right (-22px)');
+  check(componentsCss.includes('top: 40%') && componentsCss.includes('transform: translateY(-50%)'), 'components.css positions arrows safely clear of text (top: 40%; transform: translateY(-50%))');
+  check(componentsCss.includes('.carousel-arrow.prev {') && componentsCss.includes('left: -32px;'), 'components.css positions prev arrow outside (-32px)');
+  check(componentsCss.includes('.carousel-arrow.next {') && componentsCss.includes('right: -32px;'), 'components.css positions next arrow outside (-32px)');
+  check(!toursHtml.includes('Bespoke Private Itinerary Crete'), 'tours.html does not contain Bespoke Private Itinerary Crete badge');
 
   // Requirement 3: Tours carousel on both index.html and tours.html
   check(indexHtml.includes('id="home-tours-preview"') && indexHtml.includes('tours-carousel-track'), 'index.html has tours carousel track');

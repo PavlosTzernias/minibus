@@ -111,6 +111,8 @@
 
     const openMenu = () => {
       toggle.classList.add("active");
+      toggle.setAttribute("aria-label", window.currentLang === "el" ? "Κλείσιμο μενού" : "Close menu");
+      toggle.setAttribute("title", window.currentLang === "el" ? "Κλείσιμο μενού" : "Close menu");
       navMenu.classList.add("open");
       overlay.classList.add("active");
       if (header) header.classList.add("menu-open");
@@ -119,6 +121,8 @@
 
     const closeMenu = () => {
       toggle.classList.remove("active");
+      toggle.setAttribute("aria-label", window.currentLang === "el" ? "Μενού" : "Menu");
+      toggle.setAttribute("title", window.currentLang === "el" ? "Μενού" : "Menu");
       navMenu.classList.remove("open");
       overlay.classList.remove("active");
       if (header) header.classList.remove("menu-open");

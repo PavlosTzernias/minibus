@@ -159,7 +159,7 @@ const I18N_DATA = {
     // Hero Section
     heroBadge: "Executive Mini Bus Transfers Crete",
     heroTitle: "Luxury Private Transfers & VIP Tours in Crete",
-    heroSubtitle: "Safety, first-class comfort, and absolute punctuality. Private door-to-door transfers from/to Heraklion & Chania Airports, Ports, Resorts, and bespoke excursions across Crete.",
+    heroSubtitle: "Safety, first-class comfort, and absolute punctuality. Private door-to-door transfers from/to Heraklion & Chania Airports, Ports, Resorts, and customized excursions across Crete.",
     heroFeature1: "Real-Time Flight Tracking in Crete",
     heroFeature2: "Certified Multilingual Chauffeurs",
     heroFeature3: "19+1 Seating Capacity & 18-20 Suitcases",
@@ -183,7 +183,7 @@ const I18N_DATA = {
     servicesDesc: "Covering all your transportation needs across Crete with punctuality, professionalism, and executive discretion.",
     service1Title: "Heraklion & Chania Airport Transfers",
     service1Desc: "Meet & Greet upon arrival with name board at HER and CHQ airports, flight monitoring, and dedicated luggage handling.",
-    service2Title: "Private Excursions & Bespoke Crete Tours",
+    service2Title: "Private Excursions & Custom Crete Tours",
     service2Desc: "Discover Knossos Palace, Elounda, Spinalonga, Chania, and Rethymno at your own pace with supreme comfort.",
     service3Title: "Corporate & VIP Delegations",
     service3Desc: "Executive transport for conferences and VIP guests staying at luxury Crete resorts with strict confidentiality.",
@@ -263,7 +263,7 @@ const I18N_DATA = {
     privacyPageSubtitle: "Full transparency, GDPR compliance, and clear operational policies.",
 
     // Footer
-    footerAbout: "Premier private passenger transport and bespoke tours with luxury Mercedes-Benz Mini Bus across Crete.",
+    footerAbout: "Premier private passenger transport and customized tours with luxury Mercedes-Benz Mini Bus across Crete.",
     footerQuickLinks: "Quick Links",
     footerServices: "Crete Services",
     footerContactTitle: "Contact Information",

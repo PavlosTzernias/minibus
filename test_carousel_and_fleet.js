@@ -36,6 +36,11 @@ function runTests() {
   check(componentsCss.includes('.carousel-arrow.prev {') && componentsCss.includes('left: -32px;'), 'components.css positions prev arrow outside (-32px)');
   check(componentsCss.includes('.carousel-arrow.next {') && componentsCss.includes('right: -32px;'), 'components.css positions next arrow outside (-32px)');
   check(!toursHtml.includes('Bespoke Private Itinerary Crete'), 'tours.html does not contain Bespoke Private Itinerary Crete badge');
+  check(!indexHtml.includes('Bespoke Private Itinerary Crete'), 'index.html does not contain Bespoke Private Itinerary Crete');
+  check(!indexHtml.includes('hero-image-wrap'), 'index.html Hero does not contain hero-image-wrap');
+  check(indexHtml.includes('hero-content-center'), 'index.html Hero contains centered content');
+  check(componentsCss.includes('.hero-content-center'), 'components.css contains .hero-content-center');
+  check(componentsCss.includes('.hero-section::before'), 'components.css contains overlay ready for future background photo');
 
   // Requirement 3: Tours carousel on both index.html and tours.html
   check(indexHtml.includes('id="home-tours-preview"') && indexHtml.includes('tours-carousel-track'), 'index.html has tours carousel track');

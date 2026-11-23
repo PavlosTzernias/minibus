@@ -22,7 +22,7 @@ const FLEET_DATA = [
     shortDescEn: "The flagship of our transfers in Crete. Unmatched comfort, executive luxury, and safety for airport, port, hotel transfers, and island tours.",
     
     fullDescEl: "Το Mercedes-Benz Sprinter VIP 19+1 θέσεων είναι ειδικά διαμορφωμένο για να προσφέρει εμπειρία πρώτης θέσης (First Class) στις διαδρομές της Κρήτης. Εξοπλισμένο με ανατομικά δερμάτινα ανακλινόμενα καθίσματα, ατομικό φωτισμό ανάγνωσης, ισχυρό διζωνικό κλιματισμό για τις θερμές ημέρες του καλοκαιριού και άπλετο χώρο για τα πόδια. Ιδανικό για απαιτητικούς ταξιδιώτες, γάμους, συνέδρια και ιδιωτικές περιηγήσεις σε όλη την Κρήτη.",
-    fullDescEn: "Our 19+1 seat Mercedes-Benz Sprinter VIP is custom-configured to deliver a genuine first-class travel experience across Crete. Featuring ergonomic reclining leather seats, individual reading lights, powerful dual-zone climate A/C, and generous legroom. The premier choice for VIP travelers, wedding parties, corporate delegations, and bespoke Crete excursions.",
+    fullDescEn: "Our 19+1 seat Mercedes-Benz Sprinter VIP is custom-configured to deliver a genuine first-class travel experience across Crete. Featuring ergonomic reclining leather seats, individual reading lights, powerful dual-zone climate A/C, and generous legroom. The premier choice for VIP travelers, wedding parties, corporate delegations, and private Crete excursions.",
 
     featuresEl: [
       "Ανατομικά Δερμάτινα Καθίσματα",
@@ -169,7 +169,7 @@ const FLEET_DATA = [
     luggageTextEn: "8 Large Suitcases + Handbags",
     
     shortDescEl: "Η απόλυτη ιδιωτικότητα και πολυτέλεια για οικογένειες, VIP πρόσωπα και private executive tours.",
-    shortDescEn: "The pinnacle of privacy and prestige for families, VIP dignitaries, and bespoke private tours.",
+    shortDescEn: "The pinnacle of privacy and prestige for families, VIP dignitaries, and private VIP tours.",
     
     fullDescEl: "Το Mercedes-Benz V-Class Extra VIP προσφέρει συνεδριακή διάταξη σαλονιού (Face-to-Face), πολυτελή δερμάτινα καθίσματα με υποπόδια, ατμοσφαιρικό φωτισμό και κορυφαία ηχομόνωση για ασυναγώνιστη ταξιδιωτική εμπειρία στην Κρήτη.",
     fullDescEn: "The Mercedes-Benz V-Class Extra VIP features conference club seating, executive leather captains chairs, ambient lighting, and acoustic comfort across Crete.",

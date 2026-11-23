@@ -78,16 +78,15 @@ const I18N_DATA = {
     // Tours Section & Page
     toursBadge: "Δημοφιλή Tours",
     toursHomeTitle: "Δημοφιλή Tours στην Κρήτη",
-    toursHomeSubtitle: "Ανακαλύψτε τις κορυφαίες εκδρομές μας σε μία σειρά. Σύρετε (swipe) για να δείτε όλους τους προορισμούς με το VIP Mini Bus.",
-    toursSwipeHint: "Σύρετε (swipe) για να δείτε όλες τις εκδρομές",
+    toursHomeSubtitle: "Ανακαλύψτε τις κορυφαίες ιδιωτικές εκδρομές μας στην Κρήτη με την άνεση και ασφάλεια του VIP Mini Bus.",
     toursPageTitle: "Ιδιωτικές Εκδρομές & Tours στην Κρήτη",
     toursPageSubtitle: "Εξερευνήστε τους πιο διάσημους ιστορικούς και πολιτιστικούς προορισμούς της Κρήτης με την ασφάλεια και την πολυτέλεια του VIP Mini Bus μας.",
     toursFromPrice: "Από",
     toursBtnBook: "Κράτηση / Προσφορά για την Εκδρομή",
 
     // Fleet Page
-    fleetPageTitle: "Αναλυτική Παρουσίαση του VIP Mini Bus",
-    fleetPageSubtitle: "Ανακαλύψτε τις ανέσεις, την τεχνολογία και τα χαρακτηριστικά ασφαλείας του Mercedes-Benz Sprinter VIP στην Κρήτη.",
+    fleetPageTitle: "Ο Πολυτελής Στόλος μας στην Κρήτη",
+    fleetPageSubtitle: "Εξερευνήστε τα σύγχρονα VIP Mini Bus και Minivans μας. Πατήστε σε κάθε όχημα για περισσότερες πληροφορίες.",
 
     // Booking Page & Form
     bookingPageTitle: "Αίτημα Προσφοράς & Κράτηση",
@@ -211,16 +210,15 @@ const I18N_DATA = {
     // Tours Section & Page
     toursBadge: "Popular Tours",
     toursHomeTitle: "Popular Tours in Crete",
-    toursHomeSubtitle: "Discover our top private excursions in a single row. Swipe horizontally to explore all bespoke destinations in our VIP Mini Bus.",
-    toursSwipeHint: "Swipe horizontally to explore all tours",
+    toursHomeSubtitle: "Discover our premier private excursions in Crete in first-class VIP Mini Bus comfort.",
     toursPageTitle: "Curated Private Tours & Day Excursions in Crete",
     toursPageSubtitle: "Experience Crete's most celebrated archaeological treasures, Venetian harbors, and coastlines in our VIP Mini Bus.",
     toursFromPrice: "From",
     toursBtnBook: "Book / Get Quote for this Tour",
 
     // Fleet Page
-    fleetPageTitle: "Complete VIP Mini Bus Showcase",
-    fleetPageSubtitle: "Discover the craftsmanship, entertainment tech, and safety systems of our Mercedes-Benz Sprinter VIP in Crete.",
+    fleetPageTitle: "Our Executive VIP Fleet in Crete",
+    fleetPageSubtitle: "Explore our modern VIP Mini Buses and Minivans. Tap on any vehicle for details and amenities.",
 
     // Booking Page & Form
     bookingPageTitle: "Request a Quote & Reservation",

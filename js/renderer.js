@@ -39,7 +39,58 @@ const SiteRenderer = {
     `;
   },
 
-  // Απόδοση καρτών Στόλου στην Αρχική (Preview)
+  // Helper για δημιουργία minimal κάρτας οχήματος (Όνομα + Φωτογραφία, άνοιγμα πληροφοριών με κλικ)
+  createFleetCard(vehicle, lang = "el") {
+    const title = lang === "el" ? vehicle.nameEl : vehicle.nameEn;
+    const shortDesc = lang === "el" ? vehicle.shortDescEl : vehicle.shortDescEn;
+    const luggageText = lang === "el" ? vehicle.luggageTextEl : vehicle.luggageTextEn;
+    const features = (lang === "el" ? vehicle.featuresEl : vehicle.featuresEn).slice(0, 4);
+    const featuresHtml = features.map(f => `<span class="feature-tag">✓ ${f}</span>`).join("");
+
+    return `
+      <div class="fleet-card card" data-vehicle-id="${vehicle.id}">
+        ${this.createImageFrame(vehicle.images.hero, "aspect-16-9")}
+        <div class="fleet-card-body">
+          <div class="fleet-card-header-minimal">
+            <h3 class="fleet-card-title">${title}</h3>
+            <span class="badge badge-gold" style="font-size: 0.8rem; align-self: flex-start;">${vehicle.passengers} ${lang === "el" ? "Θέσεις" : "Seats"}</span>
+          </div>
+
+          <button type="button" class="btn-fleet-toggle" aria-expanded="false">
+            <span class="toggle-text-more">${lang === "el" ? "Περισσότερες Πληροφορίες ↓" : "More Information ↓"}</span>
+            <span class="toggle-text-less" style="display: none;">${lang === "el" ? "Λιγότερα ↑" : "Show Less ↑"}</span>
+          </button>
+
+          <div class="fleet-extra-info" style="display: none;">
+            <p class="text-muted fleet-desc" style="font-size: 0.925rem; margin: 0.8rem 0 1rem 0; line-height: 1.5;">${shortDesc}</p>
+            
+            <div class="fleet-meta" style="margin-bottom: 0.85rem;">
+              <div class="fleet-meta-item">
+                <svg class="fleet-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <span>${vehicle.passengers} ${lang === "el" ? "Επιβάτες" : "Passengers"}</span>
+              </div>
+              <div class="fleet-meta-item">
+                <svg class="fleet-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                <span>${luggageText}</span>
+              </div>
+            </div>
+
+            <div class="features-list" style="margin-bottom: 1rem;">
+              ${featuresHtml}
+            </div>
+
+            <div class="fleet-card-actions" style="margin-top: 1rem;">
+              <a href="booking.html" class="btn btn-primary btn-sm btn-block">
+                ${lang === "el" ? "Κράτηση Οχήματος" : "Book This Vehicle"}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  // Απόδοση καρτών Στόλου στην Αρχική (Preview Carousel)
   renderFleetPreview(targetContainerId = "fleet-preview-container", force = false) {
     const container = document.getElementById(targetContainerId);
     if (!container || !window.FLEET_DATA) return;
@@ -49,57 +100,11 @@ const SiteRenderer = {
     container.innerHTML = "";
 
     window.FLEET_DATA.forEach(vehicle => {
-      const card = document.createElement("div");
-      card.className = "fleet-card"; // Stable without hidden opacity
-
-      const title = lang === "el" ? vehicle.nameEl : vehicle.nameEn;
-      const category = lang === "el" ? vehicle.categoryEl : vehicle.categoryEn;
-      const shortDesc = lang === "el" ? vehicle.shortDescEl : vehicle.shortDescEn;
-      const features = (lang === "el" ? vehicle.featuresEl : vehicle.featuresEn).slice(0, 5);
-
-      const featuresHtml = features.map(f => `<span class="feature-tag">✓ ${f}</span>`).join("");
-
-      card.innerHTML = `
-        ${this.createImageFrame(vehicle.images.hero, "aspect-16-9")}
-        <div class="fleet-card-body">
-          <span class="fleet-card-category">${category}</span>
-          <h3 class="fleet-card-title">${title}</h3>
-          <p class="text-muted" style="margin-bottom: 1rem; font-size: 0.95rem;">${shortDesc}</p>
-          
-          <div class="fleet-meta">
-            <div class="fleet-meta-item">
-              <svg class="fleet-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-              <span>${vehicle.passengers}</span>
-            </div>
-            <div class="fleet-meta-item">
-              <svg class="fleet-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-              <span>${lang === "el" ? vehicle.luggageTextEl : vehicle.luggageTextEn}</span>
-            </div>
-            <div class="fleet-meta-item">
-              <span class="badge badge-gold">Κρήτη • 2024 VIP</span>
-            </div>
-          </div>
-
-          <div class="features-list">
-            ${featuresHtml}
-          </div>
-
-          <div class="fleet-card-actions">
-            <a href="fleet.html#${vehicle.id}" class="btn btn-secondary btn-sm" style="flex: 1;">
-              ${lang === "el" ? "Πλήρη Χαρακτηριστικά" : "Full Specifications"}
-            </a>
-            <a href="booking.html" class="btn btn-primary btn-sm" style="flex: 1;">
-              ${lang === "el" ? "Κράτηση Οχήματος" : "Book This Vehicle"}
-            </a>
-          </div>
-        </div>
-      `;
-
-      container.appendChild(card);
+      container.insertAdjacentHTML("beforeend", this.createFleetCard(vehicle, lang));
     });
   },
 
-  // Απόδοση Αναλυτικής Σελίδας Στόλου (fleet.html)
+  // Απόδοση Στόλου στη Σελίδα Στόλου (fleet.html Carousel)
   renderFleetPage(targetContainerId = "fleet-detail-container", force = false) {
     const container = document.getElementById(targetContainerId);
     if (!container || !window.FLEET_DATA) return;
@@ -109,97 +114,7 @@ const SiteRenderer = {
     container.innerHTML = "";
 
     window.FLEET_DATA.forEach(vehicle => {
-      const section = document.createElement("div");
-      section.className = "fleet-full-detail";
-      section.id = vehicle.id;
-
-      const title = lang === "el" ? vehicle.nameEl : vehicle.nameEn;
-      const category = lang === "el" ? vehicle.categoryEl : vehicle.categoryEn;
-      const fullDesc = lang === "el" ? vehicle.fullDescEl : vehicle.fullDescEn;
-      const features = lang === "el" ? vehicle.featuresEl : vehicle.featuresEn;
-
-      const specsHtml = vehicle.specs.map(spec => `
-        <tr>
-          <td style="padding: 0.85rem 1rem; border-bottom: 1px solid var(--color-border); font-weight: 600; width: 40%; color: var(--color-primary);">
-            ${lang === "el" ? spec.labelEl : spec.labelEn}
-          </td>
-          <td style="padding: 0.85rem 1rem; border-bottom: 1px solid var(--color-border); color: var(--color-text-main);">
-            ${spec.value}
-          </td>
-        </tr>
-      `).join("");
-
-      const amenitiesHtml = features.map(f => `
-        <li style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; font-size: 0.95rem;">
-          <svg style="width: 18px; height: 18px; color: var(--color-accent); flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          <span>${f}</span>
-        </li>
-      `).join("");
-
-      section.innerHTML = `
-        <div class="card" style="margin-bottom: 3rem; padding: 2.5rem; background: #FFFFFF; border-radius: var(--radius-lg);">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
-            <div>
-              <span class="badge badge-gold" style="margin-bottom: 0.5rem;">${category}</span>
-              <h2 style="font-size: 2.2rem;">${title}</h2>
-            </div>
-            <div>
-              <a href="booking.html" class="btn btn-primary btn-lg">
-                ${lang === "el" ? "Αίτημα Προσφοράς με Αυτό το Όχημα" : "Book This VIP Mini Bus"}
-              </a>
-            </div>
-          </div>
-
-          <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-muted); margin-bottom: 2rem;">
-            ${fullDesc}
-          </p>
-
-          <!-- White Image Placeholder Showcase -->
-          <div style="margin-bottom: 2.5rem;">
-            <h3 style="margin-bottom: 1rem; font-size: 1.3rem;">
-              ${lang === "el" ? "Φωτογραφική Παρουσίαση Οχήματος (Εδώ μπαίνουν οι φωτογραφίες σας)" : "Vehicle Photo Showcase"}
-            </h3>
-            <div class="grid grid-3" style="gap: 1.5rem;">
-              <div>
-                ${this.createImageFrame(vehicle.images.exterior, "aspect-4-3")}
-                <p class="text-center text-muted" style="font-size: 0.825rem; margin-top: 0.5rem;">${lang === "el" ? "Εξωτερική Όψη Mini Bus" : "Exterior Styling"}</p>
-              </div>
-              <div>
-                ${this.createImageFrame(vehicle.images.interior, "aspect-4-3")}
-                <p class="text-center text-muted" style="font-size: 0.825rem; margin-top: 0.5rem;">${lang === "el" ? "VIP Σαλόνι & Δερμάτινα Καθίσματα" : "VIP Leather Interior"}</p>
-              </div>
-              <div>
-                ${this.createImageFrame(vehicle.images.luggage, "aspect-4-3")}
-                <p class="text-center text-muted" style="font-size: 0.825rem; margin-top: 0.5rem;">${lang === "el" ? "Χώρος Αποσκευών (18-20 Βαλίτσες)" : "Extra Luggage Capacity"}</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="grid grid-2" style="gap: 2.5rem; margin-top: 1rem;">
-            <div>
-              <h3 style="margin-bottom: 1rem; font-size: 1.3rem;">
-                ${lang === "el" ? "Τεχνικές Προδιαγραφές" : "Technical Specifications"}
-              </h3>
-              <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem; background: var(--color-bg-light); border-radius: var(--radius-sm); overflow: hidden;">
-                <tbody>
-                  ${specsHtml}
-                </tbody>
-              </table>
-            </div>
-
-            <div>
-              <h3 style="margin-bottom: 1rem; font-size: 1.3rem;">
-                ${lang === "el" ? "Παροχές & Ανέσεις Επιβατών" : "On-Board Guest Amenities"}
-              </h3>
-              <ul style="background: var(--color-bg-light); padding: 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
-                ${amenitiesHtml}
-              </ul>
-            </div>
-          </div>
-        </div>
-      `;
-
-      container.appendChild(section);
+      container.insertAdjacentHTML("beforeend", this.createFleetCard(vehicle, lang));
     });
   },
 

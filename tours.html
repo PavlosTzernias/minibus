@@ -70,7 +70,9 @@
   <!-- All Tours Grid Container (Rendered dynamically from js/data/routes.js) -->
   <section class="section section-light">
     <div class="container">
-      <div id="all-tours-container" class="grid grid-2" style="margin-bottom: 3.5rem;">
+      <div class="carousel-wrapper" style="margin-bottom: 3.5rem;">
+        <button type="button" class="carousel-arrow prev" id="all-tours-prev-btn" aria-label="Προηγούμενη Εκδρομή">‹</button>
+        <div id="all-tours-container" class="carousel-track tours-carousel-track">
 
         <div class="tour-card card">
           
@@ -391,6 +393,8 @@
       
         </div>
 
+        </div>
+        <button type="button" class="carousel-arrow next" id="all-tours-next-btn" aria-label="Επόμενη Εκδρομή">›</button>
       </div>
 
       <!-- Custom Tour Banner -->

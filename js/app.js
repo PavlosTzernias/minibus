@@ -506,45 +506,47 @@
     document.querySelectorAll(".reveal").forEach(el => el.classList.add("active"));
   }
 
-  // 10. Tours Horizontal Swipe Carousel (One Row with Touch / Mouse Drag / Arrows)
-  function initToursCarousel() {
-    const track = document.getElementById("home-tours-preview");
-    const prevBtn = document.getElementById("tours-prev-btn");
-    const nextBtn = document.getElementById("tours-next-btn");
+  // 10. Universal Horizontal Swipe Carousel (Middle Arrows, Touch Swipe, Mouse Drag)
+  function setupCarousel(trackId, prevBtnId, nextBtnId) {
+    const track = document.getElementById(trackId);
+    const prevBtn = document.getElementById(prevBtnId);
+    const nextBtn = document.getElementById(nextBtnId);
     if (!track) return;
 
     const getScrollStep = () => {
-      const card = track.querySelector(".tour-card");
+      const card = track.querySelector(".tour-card, .fleet-card, .card");
       return card ? (card.offsetWidth + 24) : 340;
     };
 
     if (prevBtn) {
-      prevBtn.addEventListener("click", () => {
+      prevBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         track.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
       });
     }
 
     if (nextBtn) {
-      nextBtn.addEventListener("click", () => {
+      nextBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         track.scrollBy({ left: getScrollStep(), behavior: "smooth" });
       });
     }
 
     const updateArrows = () => {
       if (prevBtn) {
-        prevBtn.style.opacity = track.scrollLeft <= 10 ? "0.4" : "1";
+        prevBtn.style.opacity = track.scrollLeft <= 10 ? "0.35" : "1";
         prevBtn.style.pointerEvents = track.scrollLeft <= 10 ? "none" : "auto";
       }
       if (nextBtn) {
         const maxScroll = track.scrollWidth - track.clientWidth - 10;
-        nextBtn.style.opacity = track.scrollLeft >= maxScroll ? "0.4" : "1";
+        nextBtn.style.opacity = track.scrollLeft >= maxScroll ? "0.35" : "1";
         nextBtn.style.pointerEvents = track.scrollLeft >= maxScroll ? "none" : "auto";
       }
     };
 
     track.addEventListener("scroll", updateArrows, { passive: true });
     window.addEventListener("resize", updateArrows);
-    setTimeout(updateArrows, 150);
+    setTimeout(updateArrows, 200);
 
     // Desktop Mouse Drag to Swipe
     let isDown = false;
@@ -553,7 +555,7 @@
     let hasDragged = false;
 
     track.addEventListener("mousedown", (e) => {
-      if (e.target.closest("a, button")) return;
+      if (e.target.closest("a, button, select, input")) return;
       isDown = true;
       hasDragged = false;
       track.classList.add("dragging");
@@ -578,13 +580,36 @@
       track.scrollLeft = scrollStart - walk;
     });
 
-    // Prevent accidental link clicking if user was dragging
+    // Prevent accidental link / toggle click if user was dragging
     track.addEventListener("click", (e) => {
       if (hasDragged) {
         e.preventDefault();
         e.stopPropagation();
       }
     }, true);
+  }
+
+  // 11. Minimal Fleet Card Accordion (Click on card / button expands extra details)
+  function initFleetCardExpansion() {
+    document.addEventListener("click", (e) => {
+      const toggleBtn = e.target.closest(".btn-fleet-toggle");
+      const cardHeader = e.target.closest(".fleet-card-header-minimal");
+
+      let card = null;
+      if (toggleBtn) {
+        card = toggleBtn.closest(".fleet-card");
+      } else if (cardHeader && !e.target.closest("a, button")) {
+        card = cardHeader.closest(".fleet-card");
+      }
+
+      if (!card) return;
+
+      const isExpanded = card.classList.toggle("expanded");
+      const btn = card.querySelector(".btn-fleet-toggle");
+      if (btn) {
+        btn.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+      }
+    });
   }
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -596,7 +621,15 @@
     initPreventHashJumps();
     initFormSubmit("booking-form", "booking-form-status");
     initFormSubmit("contact-form", "contact-form-status");
-    initToursCarousel();
+    
+    // Initialize Carousels (Home Tours, Home Fleet, Dedicated Tours, Dedicated Fleet)
+    setupCarousel("home-tours-preview", "home-tours-prev-btn", "home-tours-next-btn");
+    setupCarousel("home-tours-preview", "tours-prev-btn", "tours-next-btn"); // fallback ID
+    setupCarousel("fleet-preview-container", "home-fleet-prev-btn", "home-fleet-next-btn");
+    setupCarousel("all-tours-container", "all-tours-prev-btn", "all-tours-next-btn");
+    setupCarousel("fleet-detail-container", "fleet-prev-btn", "fleet-next-btn");
+
+    initFleetCardExpansion();
 
     setLanguage(window.currentLang, true);
     initScrollReveal();

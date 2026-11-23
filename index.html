@@ -275,56 +275,163 @@
         </p>
       </div>
 
-      <div id="fleet-preview-container" class="grid grid-2" style="max-width: 900px; margin: 0 auto;">
-        <div class="fleet-card">
-          <div class="image-frame aspect-16-9">
-            <div class="image-frame-placeholder">
-              <div class="badge badge-gold" style="margin-bottom: 0.6rem; font-size: 0.725rem;">
-                📸 ΕΔΩ ΜΠΑΙΝΕΙ ΦΩΤΟΓΡΑΦΙΑ
+      <div class="carousel-wrapper">
+        <button type="button" class="carousel-arrow prev" id="home-fleet-prev-btn" aria-label="Προηγούμενο Όχημα">‹</button>
+        <div id="fleet-preview-container" class="carousel-track fleet-carousel-track">
+          <!-- Vehicle 1: Mercedes Sprinter VIP 19+1 -->
+          <div class="fleet-card card" data-vehicle-id="sprinter-vip-19">
+            <div class="image-frame aspect-16-9">
+              <div class="image-frame-placeholder">
+                <div class="badge badge-gold" style="margin-bottom: 0.6rem; font-size: 0.725rem;">
+                  📸 ΕΔΩ ΜΠΑΙΝΕΙ ΦΩΤΟΓΡΑΦΙΑ
+                </div>
+                <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <circle cx="8" cy="19" r="2"></circle>
+                  <circle cx="16" cy="19" r="2"></circle>
+                  <path d="M16 8h2l3 4v3h-5V8z"></path>
+                </svg>
+                <span class="placeholder-label">ΦΩΤΟΓΡΑΦΙΑ: Mercedes-Benz Sprinter VIP 19+1</span>
+                <span class="placeholder-dimensions">[ΕΔΩ ΜΠΑΙΝΕΙ ΦΩΤΟΓΡΑΦΙΑ: 800x600]</span>
               </div>
-              <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <circle cx="8" cy="19" r="2"></circle>
-                <circle cx="16" cy="19" r="2"></circle>
-                <path d="M16 8h2l3 4v3h-5V8z"></path>
-              </svg>
-              <span class="placeholder-label">ΦΩΤΟΓΡΑΦΙΑ: Mercedes-Benz Sprinter VIP Εξωτερική Όψη</span>
-              <span class="placeholder-dimensions">[ΕΔΩ ΜΠΑΙΝΕΙ ΦΩΤΟΓΡΑΦΙΑ: Hero Mini Bus - 1600x900]</span>
+            </div>
+            <div class="fleet-card-body">
+              <div class="fleet-card-header-minimal">
+                <h3 class="fleet-card-title">Mercedes-Benz Sprinter VIP Edition</h3>
+                <span class="badge badge-gold" style="font-size: 0.8rem; align-self: flex-start;">19+1 Θέσεις</span>
+              </div>
+              <button type="button" class="btn-fleet-toggle" aria-expanded="false">
+                <span class="toggle-text-more">Περισσότερες Πληροφορίες ↓</span>
+                <span class="toggle-text-less" style="display: none;">Λιγότερα ↑</span>
+              </button>
+              <div class="fleet-extra-info" style="display: none;">
+                <p class="text-muted fleet-desc" style="font-size: 0.925rem; margin: 0.8rem 0 1rem 0; line-height: 1.5;">Η ναυαρχίδα των μεταφορών μας στην Κρήτη. Ασύγκριτη άνεση, πολυτέλεια και ασφάλεια για transfers αεροδρομίων, λιμανιών, ξενοδοχείων και εκδρομές.</p>
+                <div class="fleet-meta" style="margin-bottom: 0.85rem;">
+                  <div class="fleet-meta-item">
+                    <svg class="fleet-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <span>19 + 1 Επιβάτες</span>
+                  </div>
+                  <div class="fleet-meta-item">
+                    <svg class="fleet-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    <span>18-20 Μεγάλες Βαλίτσες + Χειραποσκευές</span>
+                  </div>
+                </div>
+                <div class="features-list" style="margin-bottom: 1rem;">
+                  <span class="feature-tag">✓ Ανατομικά Δερμάτινα Καθίσματα</span>
+                  <span class="feature-tag">✓ Δωρεάν High-Speed Wi-Fi</span>
+                  <span class="feature-tag">✓ Διζωνικός Αυτόματος Κλιματισμός (A/C)</span>
+                  <span class="feature-tag">✓ Θύρες Φόρτισης USB & Type-C</span>
+                </div>
+                <div class="fleet-card-actions" style="margin-top: 1rem;">
+                  <a href="booking.html" class="btn btn-primary btn-sm btn-block">Κράτηση Οχήματος</a>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="fleet-card-body">
-            <span class="fleet-card-category">VIP Executive Mini Bus (19 + 1 Θέσεις)</span>
-            <h3 class="fleet-card-title">Mercedes-Benz Sprinter VIP Edition</h3>
-            <p class="text-muted" style="margin-bottom: 1rem; font-size: 0.95rem;">Η ναυαρχίδα των μεταφορών μας στην Κρήτη. Ασύγκριτη άνεση, πολυτέλεια και ασφάλεια για transfers αεροδρομίων, λιμανιών, ξενοδοχείων και εκδρομές.</p>
-            
-            <div class="fleet-meta">
-              <div class="fleet-meta-item">
-                <svg class="fleet-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                <span>19 + 1</span>
-              </div>
-              <div class="fleet-meta-item">
-                <svg class="fleet-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                <span>18-20 Μεγάλες Βαλίτσες + Χειραποσκευές</span>
-              </div>
-              <div class="fleet-meta-item">
-                <span class="badge badge-gold">Κρήτη • 2024 VIP</span>
+
+          <!-- Vehicle 2: Mercedes Sprinter Executive 16+1 -->
+          <div class="fleet-card card" data-vehicle-id="sprinter-vip-16">
+            <div class="image-frame aspect-16-9">
+              <div class="image-frame-placeholder">
+                <div class="badge badge-gold" style="margin-bottom: 0.6rem; font-size: 0.725rem;">
+                  📸 ΕΔΩ ΜΠΑΙΝΕΙ ΦΩΤΟΓΡΑΦΙΑ
+                </div>
+                <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <circle cx="8" cy="19" r="2"></circle>
+                  <circle cx="16" cy="19" r="2"></circle>
+                  <path d="M16 8h2l3 4v3h-5V8z"></path>
+                </svg>
+                <span class="placeholder-label">ΦΩΤΟΓΡΑΦΙΑ: Mercedes-Benz Sprinter Executive 16+1</span>
+                <span class="placeholder-dimensions">[ΕΔΩ ΜΠΑΙΝΕΙ ΦΩΤΟΓΡΑΦΙΑ: 800x600]</span>
               </div>
             </div>
-
-            <div class="features-list">
-              <span class="feature-tag">✓ Ανατομικά Δερμάτινα Καθίσματα</span>
-              <span class="feature-tag">✓ Δωρεάν High-Speed Wi-Fi</span>
-              <span class="feature-tag">✓ Διζωνικός Αυτόματος Κλιματισμός (A/C)</span>
-              <span class="feature-tag">✓ Θύρες Φόρτισης USB & Type-C σε κάθε θέση</span>
-              <span class="feature-tag">✓ Φιμέ Παράθυρα Προστασίας Ήλιου & UV</span>
+            <div class="fleet-card-body">
+              <div class="fleet-card-header-minimal">
+                <h3 class="fleet-card-title">Mercedes-Benz Sprinter Executive</h3>
+                <span class="badge badge-gold" style="font-size: 0.8rem; align-self: flex-start;">16+1 Θέσεις</span>
+              </div>
+              <button type="button" class="btn-fleet-toggle" aria-expanded="false">
+                <span class="toggle-text-more">Περισσότερες Πληροφορίες ↓</span>
+                <span class="toggle-text-less" style="display: none;">Λιγότερα ↑</span>
+              </button>
+              <div class="fleet-extra-info" style="display: none;">
+                <p class="text-muted fleet-desc" style="font-size: 0.925rem; margin: 0.8rem 0 1rem 0; line-height: 1.5;">Ιδανική επιλογή για μεσαίου μεγέθους ομάδες, οικογένειες και εταιρικά στελέχη που αναζητούν άνεση και ευελιξία στις διαδρομές της Κρήτης.</p>
+                <div class="fleet-meta" style="margin-bottom: 0.85rem;">
+                  <div class="fleet-meta-item">
+                    <svg class="fleet-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <span>16 + 1 Επιβάτες</span>
+                  </div>
+                  <div class="fleet-meta-item">
+                    <svg class="fleet-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    <span>16 Μεγάλες Βαλίτσες + Χειραποσκευές</span>
+                  </div>
+                </div>
+                <div class="features-list" style="margin-bottom: 1rem;">
+                  <span class="feature-tag">✓ Ανακλινόμενα Δερμάτινα Καθίσματα</span>
+                  <span class="feature-tag">✓ Δωρεάν High-Speed Wi-Fi</span>
+                  <span class="feature-tag">✓ Ισχυρός Κλιματισμός Επιβατών</span>
+                  <span class="feature-tag">✓ USB Θύρες Φόρτισης</span>
+                </div>
+                <div class="fleet-card-actions" style="margin-top: 1rem;">
+                  <a href="booking.html" class="btn btn-primary btn-sm btn-block">Κράτηση Οχήματος</a>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div class="fleet-card-actions">
-              <a href="fleet.html#sprinter-vip-19" class="btn btn-secondary btn-sm" style="flex: 1;">Πλήρη Χαρακτηριστικά</a>
-              <a href="booking.html" class="btn btn-primary btn-sm" style="flex: 1;">Κράτηση Οχήματος</a>
+          <!-- Vehicle 3: Mercedes-Benz V-Class VIP 7+1 -->
+          <div class="fleet-card card" data-vehicle-id="v-class-vip-7">
+            <div class="image-frame aspect-16-9">
+              <div class="image-frame-placeholder">
+                <div class="badge badge-gold" style="margin-bottom: 0.6rem; font-size: 0.725rem;">
+                  📸 ΕΔΩ ΜΠΑΙΝΕΙ ΦΩΤΟΓΡΑΦΙΑ
+                </div>
+                <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <circle cx="8" cy="19" r="2"></circle>
+                  <circle cx="16" cy="19" r="2"></circle>
+                  <path d="M16 8h2l3 4v3h-5V8z"></path>
+                </svg>
+                <span class="placeholder-label">ΦΩΤΟΓΡΑΦΙΑ: Mercedes-Benz V-Class VIP Minivan 7+1</span>
+                <span class="placeholder-dimensions">[ΕΔΩ ΜΠΑΙΝΕΙ ΦΩΤΟΓΡΑΦΙΑ: 800x600]</span>
+              </div>
+            </div>
+            <div class="fleet-card-body">
+              <div class="fleet-card-header-minimal">
+                <h3 class="fleet-card-title">Mercedes-Benz V-Class VIP</h3>
+                <span class="badge badge-gold" style="font-size: 0.8rem; align-self: flex-start;">7+1 Θέσεις</span>
+              </div>
+              <button type="button" class="btn-fleet-toggle" aria-expanded="false">
+                <span class="toggle-text-more">Περισσότερες Πληροφορίες ↓</span>
+                <span class="toggle-text-less" style="display: none;">Λιγότερα ↑</span>
+              </button>
+              <div class="fleet-extra-info" style="display: none;">
+                <p class="text-muted fleet-desc" style="font-size: 0.925rem; margin: 0.8rem 0 1rem 0; line-height: 1.5;">Η απόλυτη πολυτέλεια σε premium VIP minivan. Ιδανικό για VIP transfers, honeymooners και ιδιωτικές περιηγήσεις υψηλού κύρους.</p>
+                <div class="fleet-meta" style="margin-bottom: 0.85rem;">
+                  <div class="fleet-meta-item">
+                    <svg class="fleet-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <span>7 + 1 Επιβάτες</span>
+                  </div>
+                  <div class="fleet-meta-item">
+                    <svg class="fleet-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    <span>7-8 Μεγάλες Βαλίτσες + Χειραποσκευές</span>
+                  </div>
+                </div>
+                <div class="features-list" style="margin-bottom: 1rem;">
+                  <span class="feature-tag">✓ VIP Δερμάτινα Καθίσματα</span>
+                  <span class="feature-tag">✓ Δωρεάν High-Speed Wi-Fi</span>
+                  <span class="feature-tag">✓ Climatronic Πολλαπλών Ζωνών</span>
+                  <span class="feature-tag">✓ Φιμέ Τζάμια Προστασίας</span>
+                </div>
+                <div class="fleet-card-actions" style="margin-top: 1rem;">
+                  <a href="booking.html" class="btn btn-primary btn-sm btn-block">Κράτηση Οχήματος</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <button type="button" class="carousel-arrow next" id="home-fleet-next-btn" aria-label="Επόμενο Όχημα">›</button>
       </div>
     </div>
   </section>
@@ -338,24 +445,13 @@
         <span class="badge badge-gold" style="margin-bottom: 0.8rem;" data-i18n="toursBadge">Δημοφιλή Tours</span>
         <h2 class="section-title text-black" data-i18n="toursHomeTitle">Δημοφιλή Tours στην Κρήτη</h2>
         <p class="section-description" data-i18n="toursHomeSubtitle">
-          Ανακαλύψτε τις κορυφαίες εκδρομές μας σε μία σειρά. Σύρετε (swipe) για να δείτε όλους τους προορισμούς με το VIP Mini Bus.
+          Ανακαλύψτε τις κορυφαίες ιδιωτικές εκδρομές μας στην Κρήτη με την άνεση και ασφάλεια του VIP Mini Bus.
         </p>
       </div>
 
-      <div class="tours-carousel-wrapper">
-        <div class="tours-carousel-header">
-          <div class="carousel-hint">
-            <span class="swipe-icon">👈</span>
-            <span data-i18n="toursSwipeHint">Σύρετε (swipe) για να δείτε όλες τις εκδρομές</span>
-            <span class="swipe-icon">👉</span>
-          </div>
-          <div class="carousel-arrows">
-            <button type="button" class="carousel-arrow prev" id="tours-prev-btn" aria-label="Προηγούμενη Εκδρομή">‹</button>
-            <button type="button" class="carousel-arrow next" id="tours-next-btn" aria-label="Επόμενη Εκδρομή">›</button>
-          </div>
-        </div>
-
-        <div id="home-tours-preview" class="tours-carousel-track" style="margin-bottom: 2.5rem;">
+      <div class="carousel-wrapper">
+        <button type="button" class="carousel-arrow prev" id="home-tours-prev-btn" aria-label="Προηγούμενη Εκδρομή">‹</button>
+        <div id="home-tours-preview" class="carousel-track tours-carousel-track" style="margin-bottom: 2.5rem;">
           <!-- Tour 1 -->
           <div class="tour-card card">
             <div class="image-frame aspect-16-9">
@@ -551,6 +647,7 @@
             </div>
           </div>
         </div>
+        <button type="button" class="carousel-arrow next" id="home-tours-next-btn" aria-label="Επόμενη Εκδρομή">›</button>
       </div>
 
       <div class="text-center reveal">

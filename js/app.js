@@ -63,7 +63,7 @@
       if (document.getElementById("fleet-preview-container")) SiteRenderer.renderFleetPreview("fleet-preview-container", true);
       if (document.getElementById("fleet-detail-container")) SiteRenderer.renderFleetPage("fleet-detail-container", true);
       if (document.getElementById("all-tours-container")) SiteRenderer.renderTours("all-tours-container", null, true);
-      if (document.getElementById("home-tours-preview")) SiteRenderer.renderTours("home-tours-preview", 2, true);
+      if (document.getElementById("home-tours-preview")) SiteRenderer.renderTours("home-tours-preview", null, true);
       SiteRenderer.injectCentralData();
     }
 
@@ -94,16 +94,46 @@
     });
   }
 
-  // 2. Mobile Menu & Navigation Links (Prevents page flicker on click)
+  // 2. Mobile Menu & Navigation Drawer
   function initMobileMenu() {
     const toggle = document.querySelector(".mobile-toggle");
     const navMenu = document.querySelector(".nav-menu");
     if (!toggle || !navMenu) return;
 
+    // Overlay backdrop
+    let overlay = document.querySelector(".nav-overlay");
+    if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.className = "nav-overlay";
+      document.body.appendChild(overlay);
+    }
+
+    const openMenu = () => {
+      toggle.classList.add("active");
+      navMenu.classList.add("open");
+      overlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeMenu = () => {
+      toggle.classList.remove("active");
+      navMenu.classList.remove("open");
+      overlay.classList.remove("active");
+      document.body.style.overflow = "";
+    };
+
     toggle.addEventListener("click", (e) => {
       e.stopPropagation();
-      toggle.classList.toggle("active");
-      navMenu.classList.toggle("open");
+      e.preventDefault();
+      if (navMenu.classList.contains("open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    overlay.addEventListener("click", () => {
+      closeMenu();
     });
 
     // Close when clicking nav links & prevent jitter/reload on current page link
@@ -121,16 +151,21 @@
             window.scrollTo({ top: 0, behavior: "smooth" });
           }
         }
-        toggle.classList.remove("active");
-        navMenu.classList.remove("open");
+        closeMenu();
       });
     });
 
     // Close if clicking outside
     document.addEventListener("click", (e) => {
       if (navMenu.classList.contains("open") && !navMenu.contains(e.target) && !toggle.contains(e.target)) {
-        toggle.classList.remove("active");
-        navMenu.classList.remove("open");
+        closeMenu();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && navMenu.classList.contains("open")) {
+        closeMenu();
       }
     });
   }
@@ -471,6 +506,87 @@
     document.querySelectorAll(".reveal").forEach(el => el.classList.add("active"));
   }
 
+  // 10. Tours Horizontal Swipe Carousel (One Row with Touch / Mouse Drag / Arrows)
+  function initToursCarousel() {
+    const track = document.getElementById("home-tours-preview");
+    const prevBtn = document.getElementById("tours-prev-btn");
+    const nextBtn = document.getElementById("tours-next-btn");
+    if (!track) return;
+
+    const getScrollStep = () => {
+      const card = track.querySelector(".tour-card");
+      return card ? (card.offsetWidth + 24) : 340;
+    };
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        track.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        track.scrollBy({ left: getScrollStep(), behavior: "smooth" });
+      });
+    }
+
+    const updateArrows = () => {
+      if (prevBtn) {
+        prevBtn.style.opacity = track.scrollLeft <= 10 ? "0.4" : "1";
+        prevBtn.style.pointerEvents = track.scrollLeft <= 10 ? "none" : "auto";
+      }
+      if (nextBtn) {
+        const maxScroll = track.scrollWidth - track.clientWidth - 10;
+        nextBtn.style.opacity = track.scrollLeft >= maxScroll ? "0.4" : "1";
+        nextBtn.style.pointerEvents = track.scrollLeft >= maxScroll ? "none" : "auto";
+      }
+    };
+
+    track.addEventListener("scroll", updateArrows, { passive: true });
+    window.addEventListener("resize", updateArrows);
+    setTimeout(updateArrows, 150);
+
+    // Desktop Mouse Drag to Swipe
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let hasDragged = false;
+
+    track.addEventListener("mousedown", (e) => {
+      if (e.target.closest("a, button")) return;
+      isDown = true;
+      hasDragged = false;
+      track.classList.add("dragging");
+      startX = e.pageX - track.offsetLeft;
+      scrollStart = track.scrollLeft;
+    });
+
+    window.addEventListener("mouseup", () => {
+      if (!isDown) return;
+      isDown = false;
+      track.classList.remove("dragging");
+    });
+
+    track.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.4;
+      if (Math.abs(walk) > 5) {
+        hasDragged = true;
+      }
+      track.scrollLeft = scrollStart - walk;
+    });
+
+    // Prevent accidental link clicking if user was dragging
+    track.addEventListener("click", (e) => {
+      if (hasDragged) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     initMobileMenu();
     initLangSwitchers();
@@ -480,6 +596,7 @@
     initPreventHashJumps();
     initFormSubmit("booking-form", "booking-form-status");
     initFormSubmit("contact-form", "contact-form-status");
+    initToursCarousel();
 
     setLanguage(window.currentLang, true);
     initScrollReveal();

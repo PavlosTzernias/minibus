@@ -75,7 +75,11 @@ const I18N_DATA = {
     why4Title: "Διαφανείς Τιμές Χωρίς Κρυφές Χρεώσεις",
     why4Desc: "Σαφείς προσφορές που περιλαμβάνουν καύσιμα, αποσκευές, διόδια και όλους τους νόμιμους φόρους.",
 
-    // Tours Page
+    // Tours Section & Page
+    toursBadge: "Δημοφιλή Tours",
+    toursHomeTitle: "Δημοφιλή Tours στην Κρήτη",
+    toursHomeSubtitle: "Ανακαλύψτε τις κορυφαίες εκδρομές μας σε μία σειρά. Σύρετε (swipe) για να δείτε όλους τους προορισμούς με το VIP Mini Bus.",
+    toursSwipeHint: "Σύρετε (swipe) για να δείτε όλες τις εκδρομές",
     toursPageTitle: "Ιδιωτικές Εκδρομές & Tours στην Κρήτη",
     toursPageSubtitle: "Εξερευνήστε τους πιο διάσημους ιστορικούς και πολιτιστικούς προορισμούς της Κρήτης με την ασφάλεια και την πολυτέλεια του VIP Mini Bus μας.",
     toursFromPrice: "Από",
@@ -204,7 +208,11 @@ const I18N_DATA = {
     why4Title: "Transparent All-Inclusive Pricing",
     why4Desc: "Clear upfront quotes including fuel, luggage handling, road tolls, and all applicable taxes.",
 
-    // Tours Page
+    // Tours Section & Page
+    toursBadge: "Popular Tours",
+    toursHomeTitle: "Popular Tours in Crete",
+    toursHomeSubtitle: "Discover our top private excursions in a single row. Swipe horizontally to explore all bespoke destinations in our VIP Mini Bus.",
+    toursSwipeHint: "Swipe horizontally to explore all tours",
     toursPageTitle: "Curated Private Tours & Day Excursions in Crete",
     toursPageSubtitle: "Experience Crete's most celebrated archaeological treasures, Venetian harbors, and coastlines in our VIP Mini Bus.",
     toursFromPrice: "From",

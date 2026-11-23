@@ -15,7 +15,6 @@
   z-index: 1000;
   background-color: #0B1120; /* Solid executive navy */
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  contain: layout paint;
 }
 
 /* Stable minimum heights prevent container collapse on navigation */
@@ -151,10 +150,15 @@
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 28px;
-  height: 20px;
+  width: 32px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  padding: 2px 0;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 10002;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .mobile-toggle span {
@@ -163,11 +167,12 @@
   width: 100%;
   background-color: #FFFFFF;
   border-radius: var(--radius-full);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.25s ease, opacity 0.2s ease, background-color 0.2s ease;
 }
 
 .mobile-toggle.active span:nth-child(1) {
-  transform: translateY(8.5px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
+  background-color: var(--color-accent);
 }
 
 .mobile-toggle.active span:nth-child(2) {
@@ -175,7 +180,32 @@
 }
 
 .mobile-toggle.active span:nth-child(3) {
-  transform: translateY(-8.5px) rotate(-45deg);
+  transform: translateY(-8px) rotate(-45deg);
+  background-color: var(--color-accent);
+}
+
+/* Mobile Backdrop Overlay */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(11, 17, 32, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  pointer-events: none;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 @media (max-width: 992px) {
@@ -187,17 +217,21 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: 80%;
-    max-width: 380px;
+    width: 82%;
+    max-width: 320px;
     height: 100vh;
+    height: 100dvh;
     background-color: #0B1120;
-    border-left: 1px solid var(--color-border-dark);
+    border-left: 1px solid rgba(212, 175, 55, 0.25);
     flex-direction: column;
     align-items: flex-start;
-    padding: 6rem 2rem 2rem 2rem;
-    gap: var(--space-lg);
-    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-    transition: right 0.25s ease;
+    padding: 5.5rem 1.75rem 2.5rem 1.75rem;
+    gap: 1.25rem;
+    box-shadow: -10px 0 35px rgba(0, 0, 0, 0.7);
+    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10001;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   .nav-menu.open {
@@ -206,7 +240,19 @@
   
   .nav-link {
     font-size: 1.15rem;
+    font-weight: 600;
     width: 100%;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: block;
+    color: #E2E8F0;
+  }
+
+  .nav-link.active {
+    color: var(--color-accent);
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: var(--radius-sm);
+    padding-left: 0.75rem;
   }
   
   .nav-actions .btn-quote-header {
@@ -824,6 +870,175 @@ textarea.form-control {
   font-size: 1.35rem;
   font-weight: 800;
   color: #0B1120;
+}
+
+/* --------------------------------------------------------------------------
+   TOURS HORIZONTAL SWIPE CAROUSEL (All Tours in One Row with Smooth Swipe)
+   -------------------------------------------------------------------------- */
+.tours-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.tours-carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding: 0 0.25rem;
+}
+
+.carousel-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+  background: #F1F5F9;
+  padding: 0.4rem 0.95rem;
+  border-radius: var(--radius-full);
+  border: 1px solid #CBD5E1;
+}
+
+.carousel-hint .swipe-icon {
+  font-size: 1rem;
+}
+
+.carousel-arrows {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.carousel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #0B1120;
+  color: var(--color-accent);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.carousel-arrow:hover {
+  background: var(--color-accent);
+  color: #0B1120;
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.4);
+}
+
+.carousel-arrow:active {
+  transform: scale(0.95);
+}
+
+.tours-carousel-track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 0.25rem 1.5rem 0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) #E2E8F0;
+  cursor: grab;
+}
+
+.tours-carousel-track.dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  user-select: none;
+}
+
+.tours-carousel-track::-webkit-scrollbar {
+  height: 7px;
+}
+
+.tours-carousel-track::-webkit-scrollbar-track {
+  background: #E2E8F0;
+  border-radius: 999px;
+}
+
+.tours-carousel-track::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 999px;
+}
+
+.tours-carousel-track::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-hover);
+}
+
+/* Tour Card sizing in the single horizontal swipe row */
+.tours-carousel-track .tour-card {
+  flex: 0 0 calc(33.333% - 1rem);
+  min-width: 330px;
+  max-width: 420px;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid #CBD5E1;
+  box-shadow: 0 4px 16px rgba(11, 17, 32, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.tours-carousel-track .tour-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  box-shadow: 0 10px 24px rgba(11, 17, 32, 0.12);
+}
+
+.tours-carousel-track .tour-card .tour-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.tours-carousel-track .tour-card .tour-footer {
+  margin-top: auto;
+}
+
+@media (max-width: 1024px) {
+  .tours-carousel-track .tour-card {
+    flex: 0 0 calc(50% - 0.75rem);
+    min-width: 310px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tours-carousel-header {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .carousel-hint {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.8rem;
+  }
+  .tours-carousel-track .tour-card {
+    flex: 0 0 86%;
+    min-width: 280px;
+    max-width: 340px;
+  }
 }
 
 /* Why Choose Us Card - Strictly High-Contrast Black Text */
